@@ -1,10 +1,8 @@
-import react from "react";
-import { Layout } from "../components/Layout";
+import React from "react";
 
 export const Category = () => {
   return (
     <div className="">
-      <Layout />
       <h1> This is Category</h1>
     </div>
   );

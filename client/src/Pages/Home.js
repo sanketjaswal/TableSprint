@@ -1,11 +1,9 @@
-import react from "react";
-import { Layout } from "../components/Layout";
+import React from "react";
 
 export const Home = () => {
   return (
-    <div className="">
-      <Layout />
-      <h2> This is home</h2>
+    <div className="Home">
+      <h1> This is home</h1>
     </div>
   );
 };

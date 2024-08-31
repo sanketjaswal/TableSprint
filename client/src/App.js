@@ -9,12 +9,7 @@ import { Products } from "./Pages/Products";
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/category" element={<Category />} />
-        <Route path="/subcategory" element={<SubCategory />} />
-        <Route path="/products" element={<Products />} />
-      </Routes>
+      <Layout />
     </>
   );
 }
