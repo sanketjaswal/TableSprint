@@ -1,12 +1,21 @@
-import logo from "./logo.svg";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Header } from "./components/header";
+import { Layout } from "./components/Layout";
+import { Home } from "./Pages/Home";
+import { Category } from "./Pages/Category";
+import { SubCategory } from "./Pages/SubCategory";
+import { Products } from "./Pages/Products";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/category" element={<Category />} />
+        <Route path="/subcategory" element={<SubCategory />} />
+        <Route path="/products" element={<Products />} />
+      </Routes>
+    </>
   );
 }
 
