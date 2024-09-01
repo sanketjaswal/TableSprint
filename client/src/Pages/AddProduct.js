@@ -25,17 +25,18 @@ export const AddProduct = () => {
 
       <div className="form-holder">
         <form className="form">
-          <div className="form-container">
-            <DropdownField label="Category" id="addProductCategory" />
-            <DropdownField label="Sub Category" id="addProductSubCategory" />
-          </div>
+          <div className="form-seperater">
+            <div className="form-container">
+              <DropdownField label="Category" id="addProductCategory" />
+              <DropdownField label="Sub Category" id="addProductSubCategory" />
+            </div>
 
-          {/* image field */}
-          <div className="form-container">
-            <TextField label="Product Name" id="addProduct" />
-            <ImageField label="Upload Image" id="addProductImage" />
+            {/* image field */}
+            <div className="form-container">
+              <TextField label="Product Name" id="addProduct" />
+              <ImageField label="Upload Image" id="addProductImage" />
+            </div>
           </div>
-
           {/* buttons */}
           <div className="form-button-container">
             <CancelButton link="/products" />

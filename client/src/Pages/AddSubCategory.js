@@ -25,17 +25,18 @@ export const AddSubCategory = () => {
 
       <div className="form-holder">
         <form className="form">
-          <div className="form-container">
-            <DropdownField />
-            <TextField label="Sub Category Name" id="subcategory" />
-          </div>
+          <div className="form-seperater">
+            <div className="form-container">
+              <DropdownField label="Category Name" id="add_subcat_category" />
+              <TextField label="Sub Category Name" id="subcategory" />
+            </div>
 
-          {/* image field */}
-          <div className="form-container">
-            <NumberField label="Sub Category Sequence" id="subSequence" />
-            <ImageField label="Upload Image" id="image" />
+            {/* image field */}
+            <div className="form-container">
+              <NumberField label="Sub Category Sequence" id="subSequence" />
+              <ImageField label="Upload Image" id="image" />
+            </div>
           </div>
-
           {/* buttons */}
           <div className="form-button-container">
             <CancelButton link="/subcategory" />

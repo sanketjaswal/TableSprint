@@ -8,7 +8,7 @@ import { CancelButton } from "../components/form/CancelButton";
 import { DropdownField } from "components/form/DropdownField";
 import { Link } from "react-router-dom";
 
-export const AddProduct = () => {
+export const EditProduct = () => {
   return (
     <div className="add-item-page">
       <Link to="/products">
@@ -25,18 +25,21 @@ export const AddProduct = () => {
 
       <div className="form-holder">
         <form className="form">
-          <div className="form-container">
-            <DropdownField label="Category" id="editProductCategory" />
-            <DropdownField label="SubCategory" id="editProductSubCategory" />
-            <TextField label="Product Name" id="editProduct" />
-          </div>
+          <div className="form-seperater">
+            <div className="form-container">
+              <DropdownField label="Category" id="editProductCategory" />
+              <DropdownField label="SubCategory" id="editProductSubCategory" />
+            </div>
 
-          {/* image field */}
-          <div className="form-container">
-            <DropdownField />
-            <ImageField label="Upload Image" id="editProductImage" />
+            {/* image field */}
+            <div className="form-container">
+              <TextField label="Product Name" id="editProduct" />
+              <DropdownField label="Status" id="editProductStatus" />
+            </div>
+            <div className="form-container">
+              <ImageField label="Upload Image" id="editProductImage" />
+            </div>
           </div>
-
           {/* buttons */}
           <div className="form-button-container">
             <CancelButton link="/products" />

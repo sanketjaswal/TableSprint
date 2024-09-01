@@ -8,7 +8,7 @@ import { CancelButton } from "../components/form/CancelButton";
 import { Link } from "react-router-dom";
 import { DropdownField } from "components/form/DropdownField";
 
-export const AddCategory = () => {
+export const EditCategory = () => {
   return (
     <div className="add-item-page">
       <Link to="/category">
@@ -19,27 +19,29 @@ export const AddCategory = () => {
             src="/assets/backArrow.png"
             alt="Category"
           />
-          <p>Add Category</p>
+          <p>Edit Category</p>
         </div>
       </Link>
 
       <div className="form-holder">
         <form className="form">
-          <div className="form-container">
-            {/* Text field */}
-            <TextField label="Category Name" id="edit_category_name" />
+          <div className="form-seperater">
+            <div className="form-container">
+              {/* Text field */}
+              <TextField label="Category Name" id="edit_category_name" />
 
-            {/* number field */}
-            <NumberField
-              label="Category Sequence"
-              id="edit_category_Sequence"
-            />
-          </div>
+              {/* number field */}
+              <NumberField
+                label="Category Sequence"
+                id="edit_category_Sequence"
+              />
+            </div>
 
-          {/* image field */}
-          <div className="form-container">
-            <DropdownField label="Status" id="edit_category_Status" />
-            <ImageField label="Upload Image" id="edit_category_image" />
+            {/* image field */}
+            <div className="form-container">
+              <DropdownField label="Status" id="edit_subcategory_Status" />
+              <ImageField label="Upload Image" id="edit_category_image" />
+            </div>
           </div>
 
           {/* buttons */}

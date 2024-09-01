@@ -24,17 +24,19 @@ export const AddCategory = () => {
 
       <div className="form-holder">
         <form className="form">
-          <div className="form-container">
-            {/* Text field */}
-            <TextField label="Category Name" id="category" />
+          <div className="form-seperater">
+            <div className="form-container">
+              {/* Text field */}
+              <TextField label="Category Name" id="add_category" />
 
-            {/* number field */}
-            <NumberField label="Category Sequence" id="Sequence" />
-          </div>
+              {/* number field */}
+              <NumberField label="Category Sequence" id="add_Sequence" />
+            </div>
 
-          {/* image field */}
-          <div className="form-container">
-            <ImageField label="Upload Image" id="image" />
+            {/* image field */}
+            <div className="form-container">
+              <ImageField label="Upload Image" id="add_cat_image" />
+            </div>
           </div>
 
           {/* buttons */}
