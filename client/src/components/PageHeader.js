@@ -1,7 +1,8 @@
 import React from "react";
 import "css/PageHeader.css";
+import { Link } from "react-router-dom";
 
-export const PageHeader = ({ name, icon }) => {
+export const PageHeader = ({ name, icon, addRoute }) => {
   return (
     <div className="page-header">
       {/* icon */}
@@ -13,7 +14,9 @@ export const PageHeader = ({ name, icon }) => {
       <form>
         <input className="search_bar" type="text"></input>
       </form>
-      <button className="add-btn">Add {name}</button>
+      <Link to={addRoute}>
+        <button className="add-btn">Add {name}</button>
+      </Link>
     </div>
   );
 };

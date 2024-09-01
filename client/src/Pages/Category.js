@@ -50,9 +50,13 @@ export const Category = () => {
 
   return (
     <div className="Category">
-      <PageHeader name="Category" icon="/assets/Category.png" />
+      <PageHeader
+        name="Category"
+        icon="/assets/Category.png"
+        addRoute="/addCategory"
+      />
       <Table columns={columns} data={data} />
-      <AddItemPage name="Category" icon="/assets/backArrow.png" />
+      {/* <AddItemPage name="Category" icon="/assets/backArrow.png" /> */}
     </div>
   );
 };

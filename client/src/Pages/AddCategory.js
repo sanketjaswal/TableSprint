@@ -1,19 +1,26 @@
 import React from "react";
 import "css/Form.css";
-import { TextField } from "./form/TextField";
-import { NumberField } from "./form/NumberField";
-import { ImageField } from "./form/ImageField";
-import { SaveButton } from "./form/SaveButton";
-import { CancelButton } from "./form/CancelButton";
-import { DropdownField } from "./form/DropdownField";
+import { TextField } from "../components/form/TextField";
+import { NumberField } from "../components/form/NumberField";
+import { ImageField } from "../components/form/ImageField";
+import { SaveButton } from "../components/form/SaveButton";
+import { CancelButton } from "../components/form/CancelButton";
+import { Link } from "react-router-dom";
 
-export const AddItemPage = ({ name, icon }) => {
+export const AddCategory = () => {
   return (
     <div className="add-item-page">
-      <div className="add-page-name">
-        <img width="28" height="28" src={icon} alt={name} />
-        <p>Add {name}</p>
-      </div>
+      <Link to="/category">
+        <div className="add-page-name">
+          <img
+            width="28"
+            height="28"
+            src="/assets/backArrow.png"
+            alt="Category"
+          />
+          <p>Add Category</p>
+        </div>
+      </Link>
 
       <div className="form-holder">
         <form className="form">
@@ -28,13 +35,11 @@ export const AddItemPage = ({ name, icon }) => {
           {/* image field */}
           <div className="form-container">
             <ImageField label="Upload Image" id="image" />
-
-            <DropdownField label="Upload option" id="image" />
           </div>
 
           {/* buttons */}
           <div className="form-button-container">
-            <CancelButton />
+            <CancelButton link="/category" />
             <SaveButton />
           </div>
         </form>

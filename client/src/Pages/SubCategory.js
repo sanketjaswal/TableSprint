@@ -54,6 +54,7 @@ export const SubCategory = () => {
         name="Sub category"
         icon="/assets/SubCategory.png"
         alt="Sub Category"
+        addRoute="/addSubCategory"
       />
       <Table columns={columns} data={data} />
     </div>

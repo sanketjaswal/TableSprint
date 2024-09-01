@@ -46,7 +46,12 @@ export const Products = () => {
   );
   return (
     <div className="Products">
-      <PageHeader name="Products" icon="/assets/Products.png" alt="Products" />
+      <PageHeader
+        name="Products"
+        icon="/assets/Products.png"
+        alt="Products"
+        addRoute="/addProduct"
+      />
       <Table columns={columns} data={data} />
     </div>
   );
