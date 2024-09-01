@@ -13,7 +13,7 @@ export const Layout = () => {
       <Header />
       <div className="below-header">
         <Navbar />
-        <div>
+        <div className="work-area">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/category" element={<Category />} />

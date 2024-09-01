@@ -24,3 +24,8 @@
   /* background-color: red; */
   /* height: 100%; */
 }
+
+.work-area {
+  display: flex;
+  flex: 1;
+}

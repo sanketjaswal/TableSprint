@@ -6,8 +6,10 @@ export const NavButton = ({ link, name, icon, alt }) => {
     <Link to={`${link}`}>
       <div className="box">
         <div className="box_head">
-          <img width="25" height="25" src={icon} alt={alt} />
-          <p>{name}</p>
+          <div className="box-name-icon">
+            <img width="28" height="28" src={icon} alt={alt} />
+            <p>{name}</p>
+          </div>
           <h6>►</h6>
         </div>
       </div>

@@ -1,0 +1,16 @@
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  font-family: Poppins;
+  font-size: 20px;
+  /* background-color: red; */
+}
+
+.home img {
+  width: 22%;
+}
