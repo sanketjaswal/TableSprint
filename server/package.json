@@ -1,9 +1,8 @@
 {
-  "name": "express-sequelize-boilerplate",
+  "name": "tablesprint_server",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/gadfaria/express-sequelize-boilerplate.git",
-  "author": "gadfaria <gadfaria@gmail.com>",
+  "author": "Sanket Jaswal",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/index.js"
