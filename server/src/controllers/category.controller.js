@@ -50,6 +50,9 @@ let categoryController = {
 
   update: async (req, res, next) => {
     try {
+      const { id } = req.params;
+      console.log("params ", req.params);
+
       const schema = Yup.object().shape({
         name: Yup.string(),
         image: Yup.string(),
@@ -59,41 +62,37 @@ let categoryController = {
 
       if (!(await schema.isValid(req.body))) throw new ValidationError();
 
-      const { name } = req.body;
-      console.log(req.body);
+      console.log("Request Body:", req.body);
 
-      // Find the category by name
-      const category = await Category.findOne({
-        where: { name },
-      });
+      // Find the category by id
+      const category = await Category.findByPk(id);
 
       if (!category) {
         return res.status(404).json({ message: "Category was not found" });
       }
 
       const [updated] = await Category.update(req.body, {
-        where: { name: req.body.name },
+        where: { id },
       });
 
+      console.log("Updated Rows:", updated);
+
       if (updated) {
-        const updatedCategory = await Category.findOne({
-          where: { name },
-        });
+        const updatedCategory = await Category.findByPk(id);
         return res.status(200).json(updatedCategory);
       }
 
       return res.status(404).json({ message: "Category not found" });
     } catch (error) {
+      console.error("Error:", error);
       next(error);
     }
   },
 
   delete: async (req, res, next) => {
     try {
-      const { name } = req.params;
-      const category = await User.findOne({
-        where: { name },
-      });
+      const { id } = req.params;
+      const category = await Category.findByPk(id);
       if (!category) throw new BadRequestError();
 
       category.destroy();
