@@ -4,6 +4,7 @@ import "css/Category.css";
 import { Table } from "components/Table";
 import { NavButton } from "components/NavButton";
 import { PageHeader } from "components/PageHeader";
+import { AddItemPage } from "components/AddItempage";
 
 export const Category = () => {
   const data = [
@@ -49,8 +50,9 @@ export const Category = () => {
 
   return (
     <div className="Category">
-      <PageHeader name="Category" icon="/assets/Category.png" alt="Category" />
+      <PageHeader name="Category" icon="/assets/Category.png" />
       <Table columns={columns} data={data} />
+      <AddItemPage name="Category" icon="/assets/backArrow.png" />
     </div>
   );
 };

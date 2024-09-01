@@ -3,10 +3,6 @@
   flex: 1;
   flex-direction: column;
   align-items: center;
-
+  position: relative;
   /* background-color: gold; */
-}
-
-.category-head {
-  /* width: 95%; */
 }
