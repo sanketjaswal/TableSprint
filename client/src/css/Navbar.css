@@ -1,0 +1,73 @@
+:root {
+  --theme-color: rgba(244, 244, 244, 1);
+}
+
+.navbar {
+  width: 20%;
+  height: 100%;
+  background-color: var(--theme-color);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  padding: 0 15px;
+  text-align: center;
+}
+
+.box {
+  padding: 5px 10px;
+  margin-block: 15px;
+  text-align: left;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.7s;
+  user-select: none;
+  font-family: Poppins;
+}
+
+.box:hover {
+  background-color: rgba(244, 237, 175, 1);
+  transition: all 0.3s;
+}
+
+.box .box_head img {
+  transition: 1.5s;
+  transform: rotateY(0deg) scale(1);
+}
+
+.box:hover .box_head img {
+  transform: rotateY(360deg) scale(1.2);
+  transition: 0.5s;
+}
+
+.box_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: Black;
+  transition: all 0.7s;
+}
+
+.box-name-icon {
+  display: flex;
+  width: 100%;
+  gap: 12%;
+}
+
+.box p {
+  transition: 0.5s;
+}
+
+.box:hover p {
+  margin-left: 6%;
+  transition: 0.3s;
+}
+
+.box h6 {
+  font-size: 18px;
+  color: rgb(177, 177, 177);
+  transition: 0.4s;
+}
+
+.box:hover h6 {
+  color: black;
+}

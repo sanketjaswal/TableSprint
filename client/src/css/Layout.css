@@ -18,6 +18,18 @@
   font-family: "Times New Roman", Times, serif;
 }
 
+.logo {
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 15%;
+  z-index: 1;
+  padding: 37px 0;
+  font-family: Roboto;
+  user-select: none;
+}
+
 .below-header {
   display: flex;
   flex: 1;

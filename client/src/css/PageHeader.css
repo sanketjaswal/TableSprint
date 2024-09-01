@@ -1,0 +1,56 @@
+.page-header {
+  width: 98%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block: 15px;
+}
+
+.page-name {
+  text-align: left;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.7s;
+  font-family: Poppins;
+  display: flex;
+  justify-content: space-evenly;
+  /* width: 18%; */
+  gap: 20px;
+}
+
+.page-header form {
+  /* width: 100%; */
+  /* background-color: green; */
+}
+
+.search_bar {
+  background-color: rgb(245, 245, 245);
+  outline: none;
+  width: 500px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  color: rgb(95, 95, 95);
+}
+
+.search_bar:focus {
+  /* border: 2px solid var(--theme-color); */
+}
+
+.add-btn {
+  background-color: rgba(102, 38, 113, 1);
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  margin-right: 5%;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-btn:active {
+  background-color: rgb(77, 28, 85);
+  transform: scale(0.9);
+  transition: 0.05s;
+}

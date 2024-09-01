@@ -1,6 +1,7 @@
 import { Table } from "components/Table";
 import React from "react";
 import "css/Products.css";
+import { PageHeader } from "components/PageHeader";
 
 export const Products = () => {
   const data = [
@@ -45,7 +46,7 @@ export const Products = () => {
   );
   return (
     <div className="Products">
-      <h1> This is Products</h1>
+      <PageHeader name="Products" icon="/assets/Products.png" alt="Products" />
       <Table columns={columns} data={data} />
     </div>
   );

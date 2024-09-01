@@ -6,6 +6,7 @@ import { Home } from "../Pages/Home";
 import { Category } from "../Pages/Category";
 import { SubCategory } from "../Pages/SubCategory";
 import { Products } from "../Pages/Products";
+import "css/Layout.css";
 
 export const Layout = () => {
   return (

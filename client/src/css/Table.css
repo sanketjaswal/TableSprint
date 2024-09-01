@@ -1,0 +1,23 @@
+.my-table {
+  width: 98%;
+  border-collapse: collapse;
+  text-align: center;
+  font-family: Poppins;
+}
+
+.my-table th,
+.my-table td {
+  border-top: 10px solid white;
+  padding: 8px;
+  margin: 20px;
+  background-color: rgba(242, 242, 242, 1);
+}
+
+.my-table th {
+  background-color: rgba(255, 248, 183, 1);
+  font-weight: lighter;
+  text-align: center;
+}
+
+.my-table tr:hover {
+}

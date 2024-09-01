@@ -1,6 +1,7 @@
 import { Table } from "components/Table";
 import React from "react";
 import "css/Subcategory.css";
+import { PageHeader } from "components/PageHeader";
 
 export const SubCategory = () => {
   const data = [
@@ -49,7 +50,11 @@ export const SubCategory = () => {
   );
   return (
     <div className="sub-category">
-      <h1> This is Sub Category</h1>
+      <PageHeader
+        name="Sub category"
+        icon="/assets/SubCategory.png"
+        alt="Sub Category"
+      />
       <Table columns={columns} data={data} />
     </div>
   );

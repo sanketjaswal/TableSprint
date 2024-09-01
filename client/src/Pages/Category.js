@@ -1,7 +1,9 @@
 import React from "react";
-import { useTable } from "react-table";
+// import { useTable } from "react-table";
 import "css/Category.css";
 import { Table } from "components/Table";
+import { NavButton } from "components/NavButton";
+import { PageHeader } from "components/PageHeader";
 
 export const Category = () => {
   const data = [
@@ -47,7 +49,7 @@ export const Category = () => {
 
   return (
     <div className="Category">
-      <h1> This is Category</h1>
+      <PageHeader name="Category" icon="/assets/Category.png" alt="Category" />
       <Table columns={columns} data={data} />
     </div>
   );
