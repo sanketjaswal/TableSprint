@@ -1,4 +1,4 @@
-require('dotenv/config');
+require("dotenv/config");
 
 module.exports = {
   dialect: process.env.DB_DIALECT,
@@ -7,7 +7,6 @@ module.exports = {
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   define: {
-    timestamps: true
+    timestamps: true,
   },
 };
-

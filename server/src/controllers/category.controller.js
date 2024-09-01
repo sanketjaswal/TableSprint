@@ -1,13 +1,15 @@
-import Category from "../models/Category";
+import Category from "../models/category";
 
 let categoryController = {
-  get: async (req, res) => {
+  get: async (req, res, next) => {
     try {
-      const category = await Category.findAll();
+      //   console.log("category model controller", Category);
+      const categories = await Category.findAll();
 
-      return res.status(200).json(users);
+      return res.status(200).json(categories);
     } catch (error) {
       console.log(error);
+      next(error);
     }
   },
 };

@@ -11,6 +11,7 @@ class Product extends Model {
       {
         sequelize,
         timestamps: true,
+        modelName: "Product",
       }
     );
 
@@ -18,8 +19,8 @@ class Product extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Subcategory);
-    this.belongsTo(models.Category);
+    // this.belongsTo(models.Subcategory);
+    // this.belongsTo(models.Category);
   }
 }
 

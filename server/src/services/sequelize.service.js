@@ -22,7 +22,7 @@ const sequelizeService = {
         console.log(connection.models);
       }
 
-      // console.log(connection);
+      console.log("model init");
 
       modelFiles.map(async (file) => {
         const model = await import(`../models/${file}`);

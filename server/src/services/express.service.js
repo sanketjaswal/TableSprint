@@ -25,7 +25,6 @@ const expressService = {
         const routeName = Object.keys(route)[0];
         routes.push(route[routeName]);
       }
-
       server = express();
       server.use(bodyParser.json());
       server.use(routes);

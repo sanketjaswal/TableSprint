@@ -11,7 +11,8 @@ class Category extends Model {
       },
       {
         sequelize,
-        timestamps: true,
+        modelName: "Category",
+        // timestamps: true,
       }
     );
 
@@ -19,7 +20,7 @@ class Category extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Subcategory);
+    // this.hasMany(models.SubCategory);
   }
 }
 

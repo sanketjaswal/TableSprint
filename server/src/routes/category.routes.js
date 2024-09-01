@@ -4,3 +4,5 @@ import categoryController from "../controllers/category.controller";
 const categoryRoutes = Router();
 
 categoryRoutes.get("/category", categoryController.get);
+
+export { categoryRoutes };

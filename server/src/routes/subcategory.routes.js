@@ -4,3 +4,5 @@ import subCategoryController from "../controllers/subcategory.controller";
 const subCategoryRoutes = Router();
 
 subCategoryRoutes.get("/subCategory", subCategoryController.get);
+
+export { subCategoryRoutes };

@@ -1,13 +1,14 @@
-import Product from "../models/Product";
+import Product from "../models/product";
 
 let productController = {
   get: async (req, res) => {
     try {
-      const product = await Product.findAll();
+      const products = await Product.findAll();
 
-      return res.status(200).json(product);
+      return res.status(200).json(products);
     } catch (error) {
       console.log(error);
+      next(error);
     }
   },
 };
