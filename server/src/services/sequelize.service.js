@@ -19,14 +19,15 @@ const sequelizeService = {
       for (const file of modelFiles) {
         const model = await import(`../models/${file}`);
         model.default.init(connection);
-        console.log(connection.models);
+        // console.log(connection.models);
       }
 
-      console.log("model init");
+      // console.log("model init");
 
       modelFiles.map(async (file) => {
         const model = await import(`../models/${file}`);
         model.default.associate && model.default.associate(connection.models);
+        console.log(connection.models);
       });
 
       console.log("[SEQUELIZE] Database service initialized");

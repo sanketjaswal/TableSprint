@@ -20,7 +20,12 @@ class Category extends Model {
   }
 
   static associate(models) {
-    // this.hasMany(models.SubCategory);
+    this.hasMany(models.Subcategory, {
+      foreignKey: {
+        name: "category_id",
+        field: "category_id",
+      },
+    });
   }
 }
 

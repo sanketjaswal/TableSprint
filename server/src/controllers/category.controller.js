@@ -20,7 +20,6 @@ let categoryController = {
   },
   add: async (req, res, next) => {
     try {
-      // const categories = await Category.findAll();
       const schema = Yup.object().shape({
         name: Yup.string().required(),
         image: Yup.string().required(),

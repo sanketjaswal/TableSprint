@@ -11,7 +11,7 @@ class Subcategory extends Model {
       },
       {
         sequelize,
-        modelName: "SubCategory",
+        modelName: "Subcategory",
         timestamps: true,
       }
     );
@@ -20,8 +20,19 @@ class Subcategory extends Model {
   }
 
   static associate(models) {
-    // this.belongsTo(models.Category);
-    // this.hasMany(models.Product);
+    this.belongsTo(models.Category, {
+      foreignKey: {
+        name: "category_id",
+        field: "category_id",
+      },
+    });
+
+    this.hasMany(models.Product, {
+      foreignKey: {
+        name: "subcategory_id",
+        field: "subcategory_id",
+      },
+    });
   }
 }
 
