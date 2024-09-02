@@ -26,7 +26,12 @@ class Product extends Model {
         field: "subcategory_id",
       },
     });
-    // this.belongsTo(models.Category);
+    this.belongsTo(models.Category, {
+      foreignKey: {
+        name: "category_id",
+        field: "category_id",
+      },
+    });
   }
 }
 

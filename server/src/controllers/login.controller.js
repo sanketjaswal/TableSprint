@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import User from "../models/User";
+import User from "../models/user";
 import JwtService from "../services/jwt.service";
 import {
   BadRequestError,
