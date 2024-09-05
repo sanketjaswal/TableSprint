@@ -22,7 +22,8 @@ export const Login = () => {
       }
 
       const data = await response;
-      localStorage.setItem("token", data.token);
+      console.log(data.data.token);
+      localStorage.setItem("token", data.data.token);
 
       navigate("/");
     } catch (error) {
