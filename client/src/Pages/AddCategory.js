@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "css/Form.css";
 import { TextField } from "../components/form/TextField";
 import { NumberField } from "../components/form/NumberField";
@@ -6,8 +6,35 @@ import { ImageField } from "../components/form/ImageField";
 import { SaveButton } from "../components/form/SaveButton";
 import { CancelButton } from "../components/form/CancelButton";
 import { Link } from "react-router-dom";
+import axiosInstance from "utils/axios";
 
 export const AddCategory = () => {
+  // State for form inputs
+  const [categoryName, setCategoryName] = useState("");
+  const [categorySequence, setCategorySequence] = useState("");
+  const [categoryImage, setCategoryImage] = useState(""); // For image upload
+
+  // Function to handle form submission
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const formData = new FormData();
+      formData.append("name", categoryName);
+      formData.append("sequence", categorySequence);
+      formData.append("image", categoryImage);
+
+      console.log(formData);
+      const response = await axiosInstance.post("/category", formData);
+
+      if (!response.ok) {
+        throw new Error("Failed to add category");
+      }
+    } catch (error) {
+      console.error("Error adding category:", error);
+    }
+  };
+
   return (
     <div className="add-item-page">
       <Link to="/category">
@@ -23,23 +50,38 @@ export const AddCategory = () => {
       </Link>
 
       <div className="form-holder">
-        <form className="form">
-          <div className="form-seperater">
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="form-separator">
             <div className="form-container">
               {/* Text field */}
-              <TextField label="Category Name" id="add_category" />
+              <TextField
+                label="Category Name"
+                id="add_category"
+                value={categoryName}
+                onChange={(e) => setCategoryName(e.target.value)}
+              />
 
-              {/* number field */}
-              <NumberField label="Category Sequence" id="add_Sequence" />
+              {/* Number field */}
+              <NumberField
+                label="Category Sequence"
+                id="add_Sequence"
+                value={categorySequence}
+                onChange={(e) => setCategorySequence(e.target.value)}
+              />
             </div>
 
-            {/* image field */}
+            {/* Image field */}
             <div className="form-container">
-              <ImageField label="Upload Image" id="add_cat_image" />
+              <ImageField
+                label="Upload Image"
+                id="add_cat_image"
+                value={categoryImage}
+                onChange={(e) => setCategoryImage(e.target.value)}
+              />
             </div>
           </div>
 
-          {/* buttons */}
+          {/* Buttons */}
           <div className="form-button-container">
             <CancelButton link="/category" />
             <SaveButton />

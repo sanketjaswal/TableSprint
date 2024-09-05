@@ -5,6 +5,7 @@ import "css/Table.css";
 export const Table = ({ columns, data }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
+
   return (
     <table {...getTableProps()} className="my-table">
       <thead>
@@ -22,7 +23,13 @@ export const Table = ({ columns, data }) => {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map((cell) => (
-                <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                <td {...cell.getCellProps()}>
+                  {typeof cell.value === "boolean"
+                    ? cell.value
+                      ? "Active"
+                      : "Inactive"
+                    : cell.render("Cell")}
+                </td>
               ))}
             </tr>
           );

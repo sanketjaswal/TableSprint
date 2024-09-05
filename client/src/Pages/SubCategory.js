@@ -1,29 +1,35 @@
 import { Table } from "components/Table";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "css/Subcategory.css";
 import { PageHeader } from "components/PageHeader";
+import axiosInstance from "utils/axios";
 
 export const SubCategory = () => {
-  const data = [
-    {
-      col1: "Hello",
-      col2: "World",
-    },
-    {
-      col1: "React",
-      col2: "Table",
-    },
-  ];
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance.get("/product");
+        // console.log(response.data);
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const columns = React.useMemo(
     () => [
       {
         Header: "id",
-        accessor: "col1",
+        accessor: "id",
       },
       {
         Header: "Sub Category name",
-        accessor: "col2",
+        accessor: "name",
       },
       {
         Header: "Category name",
@@ -31,15 +37,15 @@ export const SubCategory = () => {
       },
       {
         Header: "Image",
-        accessor: "col4",
+        accessor: "image",
       },
       {
         Header: "Status",
-        accessor: "col5",
+        accessor: "status",
       },
       {
         Header: "Sequence",
-        accessor: "col6",
+        accessor: "sequence",
       },
       {
         Header: "Action",

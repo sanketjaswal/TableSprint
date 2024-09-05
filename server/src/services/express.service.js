@@ -1,5 +1,6 @@
 import express from "express";
 import fs from "fs";
+import cors from "cors";
 import bodyParser from "body-parser";
 import globalErrorHandler from "../middlewares/errorHandler.middleware";
 /*
@@ -26,6 +27,13 @@ const expressService = {
         routes.push(route[routeName]);
       }
       server = express();
+      server.use(
+        cors({
+          origin: "http://localhost:3000",
+          methods: "GET,POST,PUT,DELETE",
+          allowedHeaders: "Content-Type,Authorization",
+        })
+      );
       server.use(bodyParser.json());
       server.use(routes);
       server.use(globalErrorHandler);

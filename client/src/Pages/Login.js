@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import "css/Login.css";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "utils/axios";
 
 export const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axiosInstance.post("/login", {
+        email,
+        password,
+      });
+
+      if (!response) {
+        throw new Error("Login failed");
+      }
+
+      const data = await response;
+      localStorage.setItem("token", data.token);
+
+      navigate("/");
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   const goToLogin = () => {
     document.getElementById("login").style.transform = "scale(1)";
     document.getElementById("forgotPass").style.transform = "scale(0)";
@@ -22,18 +50,30 @@ export const Login = () => {
             <label className="form-label" htmlFor="email">
               Email-id
             </label>
-            <input className="form-input" id="email" type="email" />
+            <input
+              className="form-input"
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className="form-field">
             <label className="form-label" htmlFor="password">
               Password
             </label>
-            <input className="form-input" id="password" type="password" />
+            <input
+              className="form-input"
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
           <a onClick={goToForgotPassword}>
             <p>Forgot Password?</p>
           </a>
-          <button className="save-button" type="submit">
+          <button className="save-button" type="submit" onClick={handleLogin}>
             Log In
           </button>
         </div>

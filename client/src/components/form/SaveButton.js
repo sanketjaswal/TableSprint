@@ -1,6 +1,6 @@
 import React from "react";
 
-export const SaveButton = ({ name }) => {
+export const SaveButton = ({}) => {
   return (
     <button className="save-button" type="submit">
       Save

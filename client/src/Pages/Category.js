@@ -1,48 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import { useTable } from "react-table";
 import "css/Category.css";
+import axiosInstance from ".././utils/axios";
 import { Table } from "components/Table";
-import { NavButton } from "components/NavButton";
 import { PageHeader } from "components/PageHeader";
-import { AddItemPage } from "components/AddItempage";
+// import { NavButton } from "components/NavButton";
+// import { AddItemPage } from "components/AddItempage";
 
 export const Category = () => {
-  const data = [
-    {
-      col1: "Hello",
-      col2: "World",
-    },
-    {
-      col1: "React",
-      col2: "Table",
-    },
-  ];
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance.get("/category");
+        // console.log(response.data);
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const columns = React.useMemo(
     () => [
       {
         Header: "id",
-        accessor: "col1",
+        accessor: "id",
       },
       {
         Header: "Category name",
-        accessor: "col2",
+        accessor: "name",
       },
       {
         Header: "Image",
-        accessor: "col3",
+        accessor: "image",
       },
       {
         Header: "Status",
-        accessor: "col4",
+        accessor: "status",
       },
       {
         Header: "Sequence",
-        accessor: "col5",
+        accessor: "sequence",
       },
       {
         Header: "Action",
-        accessor: "col6",
+        accessor: "col7",
       },
     ],
     []
