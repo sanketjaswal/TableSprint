@@ -7,19 +7,36 @@ import axiosInstance from "utils/axios";
 export const Products = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosInstance.get("/product");
-        // console.log(response.data);
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await axiosInstance.get("/product");
+      // console.log(response.data);
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [data]);
+
+  const deleteProduct = (data) => {
+    console.log(data);
+    try {
+      axiosInstance.delete("/product/" + data.id);
+      console.log("Data Deleted Successfully");
+    } catch (error) {
+      console.error("Error Deleting data:", data.name);
+    }
+  };
+
+  const editProduct = (re) => {};
+
   const columns = React.useMemo(
     () => [
       {
@@ -45,6 +62,29 @@ export const Products = () => {
       {
         Header: "Action",
         accessor: "col6",
+        Cell: ({ row }) => (
+          <span
+            style={{
+              display: "flex",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <img
+              src="assets/Edit-btn.png"
+              alt="Edit"
+              className="row-btns"
+              onClick={() => editProduct(row.original)}
+            />{" "}
+            {/* Edit Icon */}
+            <img
+              src="assets/Delete-btn.png"
+              alt="Delete"
+              className="row-btns"
+              onClick={() => deleteProduct(row.original)}
+            />
+            {/* Delete Icon */}
+          </span>
+        ),
       },
     ],
     []

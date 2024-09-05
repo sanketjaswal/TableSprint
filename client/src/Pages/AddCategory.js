@@ -18,15 +18,15 @@ export const AddCategory = () => {
     event.preventDefault();
 
     try {
-      // const formData = new FormData();
-      // formData.append("name", categoryName);
-      // formData.append("sequence", categorySequence);
+      const formData = new FormData();
+      formData.append("name", categoryName);
+      formData.append("sequence", categorySequence);
       // formData.append("image", categoryImage);
 
-      const formData = {
-        name: categoryName,
-        sequence: categorySequence,
-      };
+      // const formData = {
+      //   name: categoryName,
+      //   sequence: categorySequence,
+      // };
 
       console.log(formData);
       const response = await axiosInstance.post("/category", formData);

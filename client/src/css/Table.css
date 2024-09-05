@@ -21,3 +21,25 @@
 
 .my-table tr:hover {
 }
+
+.row-btns {
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 2px;
+  transition: 0.5s;
+}
+
+.row-btns:active {
+  transition: 0.1s;
+  transform: scale(0.8);
+}
+
+.row-btns:nth-child(1):hover {
+  background-color: #662671;
+  transition: 0.2s;
+}
+
+.row-btns:hover {
+  background-color: #ff0000;
+  transition: 0.2s;
+}

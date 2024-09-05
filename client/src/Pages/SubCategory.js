@@ -7,19 +7,35 @@ import axiosInstance from "utils/axios";
 export const SubCategory = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosInstance.get("/subcategory");
-        console.log(response.data);
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await axiosInstance.get("/subcategory");
+      console.log(response.data);
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [data]);
+
+  const deleteSubCategory = (data) => {
+    console.log(data);
+    try {
+      axiosInstance.delete("/subcategory/" + data.id);
+      console.log("Data Deleted Successfully");
+    } catch (error) {
+      console.error("Error Deleting data:", data.name);
+    }
+  };
+
+  const editSubCategory = (re) => {};
 
   const columns = React.useMemo(
     () => [
@@ -50,6 +66,29 @@ export const SubCategory = () => {
       {
         Header: "Action",
         accessor: "col7",
+        Cell: ({ row }) => (
+          <span
+            style={{
+              display: "flex",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <img
+              src="assets/Edit-btn.png"
+              alt="Edit"
+              className="row-btns"
+              onClick={() => editSubCategory(row.original)}
+            />{" "}
+            {/* Edit Icon */}
+            <img
+              src="assets/Delete-btn.png"
+              alt="Delete"
+              className="row-btns"
+              onClick={() => deleteSubCategory(row.original)}
+            />
+            {/* Delete Icon */}
+          </span>
+        ),
       },
     ],
     []

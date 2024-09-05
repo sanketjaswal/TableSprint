@@ -10,23 +10,35 @@ import { PageHeader } from "components/PageHeader";
 export const Category = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosInstance.get("/category");
-        // console.log(response.data);
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await axiosInstance.get("/category");
+      // console.log(response.data);
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
-  const deleteCategory = (re) => {
-    console.log(re);
+  useEffect(() => {
+    fetchData();
+  }, [data]);
+
+  const deleteCategory = (data) => {
+    console.log(data);
+    try {
+      axiosInstance.delete("/category/" + data.id);
+      console.log("Data Deleted Successfully");
+    } catch (error) {
+      console.error("Error Deleting data:", data.name);
+    }
   };
+
+  const editCategory = (re) => {};
 
   const columns = React.useMemo(
     () => [
@@ -60,10 +72,17 @@ export const Category = () => {
               justifyContent: "space-evenly",
             }}
           >
-            <img src="assets/Edit-btn.png" alt="Edit" /> {/* Edit Icon */}
+            <img
+              src="assets/Edit-btn.png"
+              alt="Edit"
+              className="row-btns"
+              onClick={() => editCategory(row.original)}
+            />{" "}
+            {/* Edit Icon */}
             <img
               src="assets/Delete-btn.png"
               alt="Delete"
+              className="row-btns"
               onClick={() => deleteCategory(row.original)}
             />
             {/* Delete Icon */}
@@ -82,7 +101,6 @@ export const Category = () => {
         addRoute="/addCategory"
       />
       <Table columns={columns} data={data} />
-      {/* <AddItemPage name="Category" icon="/assets/backArrow.png" /> */}
     </div>
   );
 };
