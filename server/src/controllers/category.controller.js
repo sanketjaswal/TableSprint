@@ -22,7 +22,7 @@ let categoryController = {
     try {
       const schema = Yup.object().shape({
         name: Yup.string().required(),
-        image: Yup.string().required(),
+        // image: Yup.mixed().required(),
         sequence: Yup.string().required(),
       });
 
@@ -35,6 +35,8 @@ let categoryController = {
       const categoryExists = await Category.findOne({
         where: { name },
       });
+
+      console.log("categoryExists ", categoryExists);
 
       if (categoryExists) throw new BadRequestError();
 

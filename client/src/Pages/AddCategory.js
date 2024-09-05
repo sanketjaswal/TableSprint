@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "css/Form.css";
 import { TextField } from "../components/form/TextField";
 import { NumberField } from "../components/form/NumberField";
@@ -12,17 +12,21 @@ export const AddCategory = () => {
   // State for form inputs
   const [categoryName, setCategoryName] = useState("");
   const [categorySequence, setCategorySequence] = useState("");
-  const [categoryImage, setCategoryImage] = useState(""); // For image upload
+  const [categoryImage, setCategoryImage] = useState("");
 
-  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const formData = new FormData();
-      formData.append("name", categoryName);
-      formData.append("sequence", categorySequence);
-      formData.append("image", categoryImage);
+      // const formData = new FormData();
+      // formData.append("name", categoryName);
+      // formData.append("sequence", categorySequence);
+      // formData.append("image", categoryImage);
+
+      const formData = {
+        name: categoryName,
+        sequence: categorySequence,
+      };
 
       console.log(formData);
       const response = await axiosInstance.post("/category", formData);
@@ -71,14 +75,14 @@ export const AddCategory = () => {
             </div>
 
             {/* Image field */}
-            <div className="form-container">
+            {/* <div className="form-container">
               <ImageField
                 label="Upload Image"
                 id="add_cat_image"
                 value={categoryImage}
                 onChange={(e) => setCategoryImage(e.target.value)}
               />
-            </div>
+            </div> */}
           </div>
 
           {/* Buttons */}

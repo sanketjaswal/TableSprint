@@ -24,6 +24,10 @@ export const Category = () => {
     fetchData();
   }, []);
 
+  const deleteCategory = (re) => {
+    console.log(re);
+  };
+
   const columns = React.useMemo(
     () => [
       {
@@ -48,7 +52,23 @@ export const Category = () => {
       },
       {
         Header: "Action",
-        accessor: "col7",
+        accessor: "Action",
+        Cell: ({ row }) => (
+          <span
+            style={{
+              display: "flex",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <img src="assets/Edit-btn.png" alt="Edit" /> {/* Edit Icon */}
+            <img
+              src="assets/Delete-btn.png"
+              alt="Delete"
+              onClick={() => deleteCategory(row.original)}
+            />
+            {/* Delete Icon */}
+          </span>
+        ),
       },
     ],
     []

@@ -10,8 +10,8 @@ export const SubCategory = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.get("/product");
-        // console.log(response.data);
+        const response = await axiosInstance.get("/subcategory");
+        console.log(response.data);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -33,7 +33,7 @@ export const SubCategory = () => {
       },
       {
         Header: "Category name",
-        accessor: "col3",
+        accessor: "Category.name",
       },
       {
         Header: "Image",

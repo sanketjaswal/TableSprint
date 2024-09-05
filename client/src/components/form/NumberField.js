@@ -1,6 +1,6 @@
 import React from "react";
 
-export const NumberField = ({ label, id }) => {
+export const NumberField = ({ label, id, value, onChange }) => {
   const changeValue = (amount) => {
     const input = document.getElementById(id);
     console.log(input);
@@ -27,16 +27,17 @@ export const NumberField = ({ label, id }) => {
           type="number"
           className="number-input"
           id={id}
-          value="1"
+          value={value}
+          onChange={onChange}
           min="1"
           max="100"
         />
       </div>
       <div className="number-btns-holder">
-        <button className="decrease-btn" onClick={decreaseValue}>
+        <button className="decrease-btn" type="button" onClick={decreaseValue}>
           ˄
         </button>
-        <button className="increase-btn" onClick={increaseValue}>
+        <button className="increase-btn" type="button" onClick={increaseValue}>
           ˅
         </button>
       </div>

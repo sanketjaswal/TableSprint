@@ -22,7 +22,6 @@ export const Login = () => {
       }
 
       const data = await response;
-      console.log(data.data.token);
       localStorage.setItem("token", data.data.token);
 
       navigate("/");

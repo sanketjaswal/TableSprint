@@ -38,6 +38,7 @@ const expressService = {
       server.use(routes);
       server.use(globalErrorHandler);
       server.listen(process.env.SERVER_PORT);
+      server.use(express.urlencoded({ extended: true }));
       console.log("[EXPRESS] Express initialized");
     } catch (error) {
       console.log("[EXPRESS] Error during express service initialization");
