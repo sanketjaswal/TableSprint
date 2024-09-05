@@ -3,14 +3,18 @@ import React, { useEffect, useState } from "react";
 import "css/Subcategory.css";
 import { PageHeader } from "components/PageHeader";
 import axiosInstance from "utils/axios";
+import { useNavigate } from "react-router-dom";
 
 export const SubCategory = () => {
   const [data, setData] = useState([]);
+  const [edits, setEdits] = useState(0);
+
+  let navigate = useNavigate();
 
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get("/subcategory");
-      console.log(response.data);
+      // console.log(response.data);
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -19,23 +23,24 @@ export const SubCategory = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, [data]);
+  }, [edits]);
 
   const deleteSubCategory = (data) => {
     console.log(data);
     try {
       axiosInstance.delete("/subcategory/" + data.id);
       console.log("Data Deleted Successfully");
+      let num = edits;
+      num++;
+      setEdits(num);
     } catch (error) {
       console.error("Error Deleting data:", data.name);
     }
   };
 
-  const editSubCategory = (re) => {};
+  const editSubCategory = (data) => {
+    navigate("/editSubCategory", { state: { data: data } });
+  };
 
   const columns = React.useMemo(
     () => [

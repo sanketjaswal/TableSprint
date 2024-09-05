@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "css/Form.css";
 import { TextField } from "../components/form/TextField";
 import { NumberField } from "../components/form/NumberField";
@@ -6,9 +6,15 @@ import { ImageField } from "../components/form/ImageField";
 import { SaveButton } from "../components/form/SaveButton";
 import { CancelButton } from "../components/form/CancelButton";
 import { DropdownField } from "components/form/DropdownField";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const EditSubCategory = () => {
+  const location = useLocation();
+  const { data } = location.state || {};
+
+  const [subCategoryName, setSubCategoryName] = useState(data.name);
+  const [subCategorySequence, setSubCategorySequence] = useState(data.sequence);
+
   return (
     <div className="add-item-page">
       <Link to="/subcategory">
@@ -28,7 +34,12 @@ export const EditSubCategory = () => {
           <div className="form-seperater">
             <div className="form-container">
               <DropdownField label="Category" id="editSubcat_Category" />{" "}
-              <TextField label="Sub Category Name" id="editSubcat_Name" />
+              <TextField
+                label="Sub Category Name"
+                id="editSubcat_Name"
+                value={subCategoryName}
+                onChange={(e) => setSubCategoryName(e.target.value)}
+              />
             </div>
 
             {/* image field */}
@@ -36,6 +47,8 @@ export const EditSubCategory = () => {
               <NumberField
                 label="Sub Category Sequence"
                 id="editSubcat_Sequence"
+                value={subCategorySequence}
+                onChange={(e) => setSubCategorySequence(e.target.value)}
               />
               <DropdownField label="Status" id="edit_category_Status" />
             </div>

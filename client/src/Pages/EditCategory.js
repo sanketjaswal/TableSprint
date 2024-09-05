@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "css/Form.css";
 import { TextField } from "../components/form/TextField";
 import { NumberField } from "../components/form/NumberField";
 import { ImageField } from "../components/form/ImageField";
 import { SaveButton } from "../components/form/SaveButton";
 import { CancelButton } from "../components/form/CancelButton";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { DropdownField } from "components/form/DropdownField";
 
 export const EditCategory = () => {
+  const location = useLocation();
+  const { data } = location.state || {};
+
+  const [categoryName, setCategoryName] = useState(data.name);
+  const [categorySequence, setCategorySequence] = useState(data.sequence);
+
+  // console.log(data);
+
   return (
     <div className="add-item-page">
       <Link to="/category">
@@ -28,12 +36,19 @@ export const EditCategory = () => {
           <div className="form-seperater">
             <div className="form-container">
               {/* Text field */}
-              <TextField label="Category Name" id="edit_category_name" />
+              <TextField
+                label="Category Name"
+                id="edit_category_name"
+                value={categoryName}
+                onChange={(e) => setCategoryName(e.target.value)}
+              />
 
               {/* number field */}
               <NumberField
                 label="Category Sequence"
                 id="edit_category_Sequence"
+                value={categorySequence}
+                onChange={(e) => setCategorySequence(e.target.value)}
               />
             </div>
 

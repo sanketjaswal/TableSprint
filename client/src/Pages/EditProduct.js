@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "css/Form.css";
 import { TextField } from "../components/form/TextField";
 import { NumberField } from "../components/form/NumberField";
@@ -6,9 +6,14 @@ import { ImageField } from "../components/form/ImageField";
 import { SaveButton } from "../components/form/SaveButton";
 import { CancelButton } from "../components/form/CancelButton";
 import { DropdownField } from "components/form/DropdownField";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const EditProduct = () => {
+  const location = useLocation();
+  const { data } = location.state || {};
+
+  const [productName, setProductName] = useState(data.name);
+  const [productSequence, setProductSequence] = useState(data.sequence);
   return (
     <div className="add-item-page">
       <Link to="/products">
@@ -33,7 +38,12 @@ export const EditProduct = () => {
 
             {/* image field */}
             <div className="form-container">
-              <TextField label="Product Name" id="editProduct" />
+              <TextField
+                label="Product Name"
+                id="editProduct"
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
+              />
               <DropdownField label="Status" id="editProductStatus" />
             </div>
             <div className="form-container">

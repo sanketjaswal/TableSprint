@@ -4,11 +4,15 @@ import "css/Category.css";
 import axiosInstance from ".././utils/axios";
 import { Table } from "components/Table";
 import { PageHeader } from "components/PageHeader";
+import { useNavigate } from "react-router-dom";
 // import { NavButton } from "components/NavButton";
 // import { AddItemPage } from "components/AddItempage";
 
 export const Category = () => {
   const [data, setData] = useState([]);
+  const [edits, setEdits] = useState(0);
+
+  let navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -22,23 +26,24 @@ export const Category = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, [data]);
+  }, [edits]);
 
   const deleteCategory = (data) => {
     console.log(data);
     try {
       axiosInstance.delete("/category/" + data.id);
       console.log("Data Deleted Successfully");
+      let num = edits;
+      num++;
+      setEdits(num);
     } catch (error) {
       console.error("Error Deleting data:", data.name);
     }
   };
 
-  const editCategory = (re) => {};
+  const editCategory = (data) => {
+    navigate("/editCategory", { state: { data: data } });
+  };
 
   const columns = React.useMemo(
     () => [

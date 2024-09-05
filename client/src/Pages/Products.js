@@ -3,9 +3,13 @@ import React, { useEffect, useState } from "react";
 import "css/Products.css";
 import { PageHeader } from "components/PageHeader";
 import axiosInstance from "utils/axios";
+import { useNavigate } from "react-router-dom";
 
 export const Products = () => {
   const [data, setData] = useState([]);
+  const [edits, setEdits] = useState(0);
+
+  let navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -19,23 +23,24 @@ export const Products = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, [data]);
+  }, [edits]);
 
   const deleteProduct = (data) => {
     console.log(data);
     try {
       axiosInstance.delete("/product/" + data.id);
       console.log("Data Deleted Successfully");
+      let num = edits;
+      num++;
+      setEdits(num);
     } catch (error) {
       console.error("Error Deleting data:", data.name);
     }
   };
 
-  const editProduct = (re) => {};
+  const editProduct = (data) => {
+    navigate("/editProduct", { state: { data: data } });
+  };
 
   const columns = React.useMemo(
     () => [
