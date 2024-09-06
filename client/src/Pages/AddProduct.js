@@ -10,35 +10,33 @@ import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "utils/axios";
 
 export const AddProduct = () => {
-  const [categoryName, setCategoryName] = useState("");
-  const [subCategoryName, setsubCategoryName] = useState("");
+  const [productName, setProductName] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+
+  const [subCategoryId, setsubCategoryId] = useState("");
 
   let navigate = useNavigate();
-
-  // const showchange = (e) => {
-  //   console.log("drop data set : ", e.target.value);
-  //   setsubCategoryName(e.target.value);
-  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       let formData = {
-        name: categoryName,
-        // category_id:,
+        name: productName,
+        category_id: categoryId,
+        subcategory_id: subCategoryId,
         // sequence: categorySequence,
       };
 
       console.log(formData);
-      const response = await axiosInstance.post("/category", formData);
+      const response = await axiosInstance.post("/product", formData);
 
-      if (!response.ok) {
-        throw new Error("Failed to add category");
+      if (!response) {
+        throw new Error("Failed to add product");
       }
       navigate("/category");
     } catch (error) {
-      console.error("Error adding category:", error);
+      console.error("Error adding product:", error);
     }
   };
   return (
@@ -62,22 +60,27 @@ export const AddProduct = () => {
               <DropdownField
                 label="Category"
                 id="addProductCategory"
-                value={categoryName}
-                onChange={(e) => setCategoryName(e.target.value)}
+                value={categoryId}
+                onChange={(e) => setCategoryId(Number(e.target.value))}
               />
               <DropdownField
                 label="Sub Category"
                 id="addProductSubCategory"
-                value={subCategoryName}
+                value={subCategoryId}
                 // onchange={(e) => showchange(e)}
-                onChange={(e) => setsubCategoryName(e.target.value)}
+                onChange={(e) => setsubCategoryId(Number(e.target.value))}
               />
             </div>
 
             {/* image field */}
             <div className="form-container">
-              <TextField label="Product Name" id="addProduct" />
-              <ImageField label="Upload Image" id="addProductImage" />
+              <TextField
+                label="Product Name"
+                id="addProduct"
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
+              />
+              {/* <ImageField label="Upload Image" id="addProductImage" /> */}
             </div>
           </div>
           {/* buttons */}

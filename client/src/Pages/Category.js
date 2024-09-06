@@ -16,6 +16,7 @@ export const Category = () => {
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get("/category");
+      // console.log(response.data);
       setCategory(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);

@@ -19,8 +19,9 @@ let productController = {
     try {
       const schema = Yup.object().shape({
         name: Yup.string().required(),
-        image: Yup.string().required(),
-        status: Yup.string().required(),
+        // image: Yup.string().required(),
+        category_id: Yup.string().required(),
+        subcategory_id: Yup.string().required(),
       });
 
       console.log(req.body);
@@ -51,7 +52,9 @@ let productController = {
 
       const schema = Yup.object().shape({
         name: Yup.string(),
-        image: Yup.string(),
+        // image: Yup.string(),
+        category_id: Yup.string(),
+        subCategory_id: Yup.string(),
         status: Yup.boolean(),
       });
 

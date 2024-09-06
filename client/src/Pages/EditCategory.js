@@ -37,7 +37,7 @@ export const EditCategory = () => {
         formData
       );
 
-      if (!response.ok) {
+      if (!response) {
         throw new Error("Failed to add category");
       }
     } catch (error) {

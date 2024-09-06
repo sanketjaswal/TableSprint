@@ -31,8 +31,8 @@ export const DropdownField = ({ label, id, value, onChange }) => {
       <select
         id={id}
         className="dropdown-select"
-        value={value} // Controlled component value
-        onChange={onChange} // Pass onChange handler
+        value={value ?? ""}
+        onChange={onChange}
       >
         {dropArr.map((dropOption) => (
           <option key={dropOption.id} value={dropOption.id}>

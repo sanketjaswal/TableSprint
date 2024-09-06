@@ -29,7 +29,7 @@ export const AddSubCategory = () => {
       console.log(formData);
       const response = await axiosInstance.post("/subcategory", formData);
 
-      if (!response.ok) {
+      if (!response) {
         throw new Error("Failed to add sub category");
       }
       // navigate("/category");

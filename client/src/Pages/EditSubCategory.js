@@ -36,7 +36,7 @@ export const EditSubCategory = () => {
         formData
       );
 
-      if (!response.ok) {
+      if (!response) {
         throw new Error("Failed to add sub category");
       }
       // navigate("/category");

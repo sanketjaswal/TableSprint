@@ -54,11 +54,11 @@ export const Products = () => {
       },
       {
         Header: " Sub Category",
-        accessor: "col3",
+        accessor: "Subcategory.name",
       },
       {
         Header: " Category",
-        accessor: "col4",
+        accessor: "Category.name",
       },
       {
         Header: "Status",

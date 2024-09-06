@@ -27,7 +27,7 @@ export const AddCategory = () => {
       console.log(formData);
       const response = await axiosInstance.post("/category", formData);
 
-      if (!response.ok) {
+      if (!response) {
         throw new Error("Failed to add category");
       }
       navigate("/category");
