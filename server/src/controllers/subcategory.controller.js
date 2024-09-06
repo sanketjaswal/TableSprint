@@ -20,7 +20,8 @@ let subCategoryController = {
     try {
       const schema = Yup.object().shape({
         name: Yup.string().required(),
-        image: Yup.string().required(),
+        // image: Yup.string().required(),
+        category_id: Yup.string().required(),
         sequence: Yup.string().required(),
       });
 
@@ -52,7 +53,8 @@ let subCategoryController = {
 
       const schema = Yup.object().shape({
         name: Yup.string(),
-        image: Yup.string(),
+        // image: Yup.string(),
+        category_id: Yup.string(),
         sequence: Yup.string(),
         status: Yup.boolean(),
       });

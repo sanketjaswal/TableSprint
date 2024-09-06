@@ -6,19 +6,41 @@ import { ImageField } from "../components/form/ImageField";
 import { SaveButton } from "../components/form/SaveButton";
 import { CancelButton } from "../components/form/CancelButton";
 import { DropdownField } from "components/form/DropdownField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "utils/axios";
 
 export const AddProduct = () => {
   const [categoryName, setCategoryName] = useState("");
   const [subCategoryName, setsubCategoryName] = useState("");
+
+  let navigate = useNavigate();
 
   // const showchange = (e) => {
   //   console.log("drop data set : ", e.target.value);
   //   setsubCategoryName(e.target.value);
   // };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
+    try {
+      let formData = {
+        name: categoryName,
+        // category_id:,
+        // sequence: categorySequence,
+      };
+
+      console.log(formData);
+      const response = await axiosInstance.post("/category", formData);
+
+      if (!response.ok) {
+        throw new Error("Failed to add category");
+      }
+      navigate("/category");
+    } catch (error) {
+      console.error("Error adding category:", error);
+    }
+  };
   return (
     <div className="add-item-page">
       <Link to="/products">

@@ -7,6 +7,7 @@ import { SaveButton } from "../components/form/SaveButton";
 import { CancelButton } from "../components/form/CancelButton";
 import { DropdownField } from "components/form/DropdownField";
 import { Link, useLocation } from "react-router-dom";
+import axiosInstance from "utils/axios";
 
 export const EditSubCategory = () => {
   const location = useLocation();
@@ -14,9 +15,35 @@ export const EditSubCategory = () => {
 
   const [subCategoryName, setSubCategoryName] = useState(data.name);
   const [subCategorySequence, setSubCategorySequence] = useState(data.sequence);
-  const [categoryName, setCategoryName] = useState("");
+  const [categoryId, setCategoryId] = useState("");
 
-  const [categoryStatus, setCategoryStatus] = useState(data.status);
+  const [subCategoryStatus, setSubCategoryStatus] = useState(data.status);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      let formData = {
+        name: subCategoryName,
+        category_id: categoryId,
+        sequence: subCategorySequence,
+        status: subCategoryStatus,
+      };
+
+      console.log(formData);
+      const response = await axiosInstance.put(
+        "/subcategory/" + data.id,
+        formData
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to add sub category");
+      }
+      // navigate("/category");
+    } catch (error) {
+      console.error("Error adding category:", error);
+    }
+  };
 
   return (
     <div className="add-item-page">
@@ -33,14 +60,14 @@ export const EditSubCategory = () => {
       </Link>
 
       <div className="form-holder">
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit}>
           <div className="form-seperater">
             <div className="form-container">
               <DropdownField
                 label="Category"
                 id="editSubcat_Category"
-                value={categoryName}
-                onChange={(e) => setCategoryName(e.target.value)}
+                value={categoryId}
+                onChange={(e) => setCategoryId(e.target.value)}
               />{" "}
               <TextField
                 label="Sub Category Name"
@@ -61,13 +88,13 @@ export const EditSubCategory = () => {
               <DropdownField
                 label="Status"
                 id="edit_category_Status"
-                value={categoryStatus}
-                onChange={(e) => setCategoryStatus(e.target.value)}
+                value={subCategoryStatus}
+                onChange={(e) => setSubCategoryStatus(e.target.value)}
               />
             </div>
-            <div className="form-container">
+            {/* <div className="form-container">
               <ImageField label="Upload Image" id="editSubcat_image" />
-            </div>
+            </div> */}
           </div>
 
           {/* buttons */}

@@ -1,7 +1,7 @@
-import DataContext from "context/context";
 import React, { useContext } from "react";
+import DataContext from "context/context";
 
-export const DropdownField = ({ label, id, value, onchange }) => {
+export const DropdownField = ({ label, id, value, onChange }) => {
   const { categoryg, subCategory } = useContext(DataContext);
 
   let dropArr = [];
@@ -12,7 +12,6 @@ export const DropdownField = ({ label, id, value, onchange }) => {
       { id: 0, name: "Inactive" },
     ];
   } else if (label === "Category" || label === "Category Name") {
-    // dropArr.push(categoryg[item].name);
     dropArr = categoryg.map((item) => ({
       id: item.id,
       name: item.name,
@@ -23,6 +22,7 @@ export const DropdownField = ({ label, id, value, onchange }) => {
       name: item.name,
     }));
   }
+
   return (
     <div className="dropdown-container">
       <label htmlFor={id} className="dropdown-label">
@@ -31,16 +31,14 @@ export const DropdownField = ({ label, id, value, onchange }) => {
       <select
         id={id}
         className="dropdown-select"
-        value={value}
-        onChange={onchange}
+        value={value} // Controlled component value
+        onChange={onChange} // Pass onChange handler
       >
-        {dropArr.map((dropOption) => {
-          return (
-            <option key={dropOption.id} value={dropOption.id}>
-              {dropOption.name}
-            </option>
-          );
-        })}
+        {dropArr.map((dropOption) => (
+          <option key={dropOption.id} value={dropOption.id}>
+            {dropOption.name}
+          </option>
+        ))}
       </select>
     </div>
   );
