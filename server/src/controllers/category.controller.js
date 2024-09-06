@@ -23,7 +23,7 @@ let categoryController = {
       const schema = Yup.object().shape({
         name: Yup.string().required(),
         // image: Yup.mixed().required(),
-        sequence: Yup.string().required(),
+        // sequence: Yup.string().required(),
       });
 
       console.log(req.body);

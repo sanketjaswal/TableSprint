@@ -23,11 +23,6 @@ export const AddCategory = () => {
       formData.append("sequence", categorySequence);
       // formData.append("image", categoryImage);
 
-      // const formData = {
-      //   name: categoryName,
-      //   sequence: categorySequence,
-      // };
-
       console.log(formData);
       const response = await axiosInstance.post("/category", formData);
 

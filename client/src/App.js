@@ -8,7 +8,6 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      {/* Route for the rest of the app, which uses the Layout component */}
       <Route
         path="/*"
         element={

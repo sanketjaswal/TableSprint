@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "css/Form.css";
 import { TextField } from "../components/form/TextField";
 import { NumberField } from "../components/form/NumberField";
@@ -7,6 +7,7 @@ import { SaveButton } from "../components/form/SaveButton";
 import { CancelButton } from "../components/form/CancelButton";
 import { Link, useLocation } from "react-router-dom";
 import { DropdownField } from "components/form/DropdownField";
+import axiosInstance from "utils/axios";
 
 export const EditCategory = () => {
   const location = useLocation();
@@ -15,7 +16,34 @@ export const EditCategory = () => {
   const [categoryName, setCategoryName] = useState(data.name);
   const [categorySequence, setCategorySequence] = useState(data.sequence);
 
+  const [categoryStatus, setCategoryStatus] = useState(data.sequence);
+
   // console.log(data);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const formData = new FormData();
+      formData.append("name", categoryName);
+      formData.append("sequence", categorySequence);
+      formData.append("status", categoryStatus);
+
+      // formData.append("image", categoryImage);
+
+      console.log(formData);
+      const response = await axiosInstance.post(
+        "/category/" + data.id,
+        formData
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to add category");
+      }
+    } catch (error) {
+      console.error("Error adding category:", error);
+    }
+  };
 
   return (
     <div className="add-item-page">
@@ -32,7 +60,7 @@ export const EditCategory = () => {
       </Link>
 
       <div className="form-holder">
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit}>
           <div className="form-seperater">
             <div className="form-container">
               {/* Text field */}
@@ -54,7 +82,12 @@ export const EditCategory = () => {
 
             {/* image field */}
             <div className="form-container">
-              <DropdownField label="Status" id="edit_subcategory_Status" />
+              <DropdownField
+                label="Status"
+                id="edit_subcategory_Status"
+                value={categoryStatus}
+                onChange={(e) => setCategoryStatus(e.target.value)}
+              />
               <ImageField label="Upload Image" id="edit_category_image" />
             </div>
           </div>

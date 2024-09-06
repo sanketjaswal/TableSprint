@@ -1,24 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import { useTable } from "react-table";
 import "css/Category.css";
 import axiosInstance from ".././utils/axios";
 import { Table } from "components/Table";
 import { PageHeader } from "components/PageHeader";
 import { useNavigate } from "react-router-dom";
-// import { NavButton } from "components/NavButton";
-// import { AddItemPage } from "components/AddItempage";
+import DataContext from "context/context";
 
 export const Category = () => {
-  const [data, setData] = useState([]);
-  const [edits, setEdits] = useState(0);
+  // const [data, setData] = useState([]);
+  const { categoryg, setCategory } = useContext(DataContext);
 
   let navigate = useNavigate();
 
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get("/category");
-      // console.log(response.data);
-      setData(response.data);
+      setCategory(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -26,16 +24,13 @@ export const Category = () => {
 
   useEffect(() => {
     fetchData();
-  }, [edits]);
+  }, [categoryg]);
 
   const deleteCategory = (data) => {
     console.log(data);
     try {
       axiosInstance.delete("/category/" + data.id);
       console.log("Data Deleted Successfully");
-      let num = edits;
-      num++;
-      setEdits(num);
     } catch (error) {
       console.error("Error Deleting data:", data.name);
     }
@@ -105,7 +100,7 @@ export const Category = () => {
         icon="/assets/Category.png"
         addRoute="/addCategory"
       />
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={categoryg} />
     </div>
   );
 };

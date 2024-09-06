@@ -1,21 +1,21 @@
 import { Table } from "components/Table";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "css/Subcategory.css";
 import { PageHeader } from "components/PageHeader";
 import axiosInstance from "utils/axios";
 import { useNavigate } from "react-router-dom";
+import DataContext from "context/context";
 
 export const SubCategory = () => {
-  const [data, setData] = useState([]);
-  const [edits, setEdits] = useState(0);
+  const { subCategory, setSubCategory } = useContext(DataContext);
 
   let navigate = useNavigate();
 
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get("/subcategory");
-      // console.log(response.data);
-      setData(response.data);
+      // setData(response.data);
+      setSubCategory(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -23,16 +23,13 @@ export const SubCategory = () => {
 
   useEffect(() => {
     fetchData();
-  }, [edits]);
+  }, [subCategory]);
 
   const deleteSubCategory = (data) => {
     console.log(data);
     try {
       axiosInstance.delete("/subcategory/" + data.id);
       console.log("Data Deleted Successfully");
-      let num = edits;
-      num++;
-      setEdits(num);
     } catch (error) {
       console.error("Error Deleting data:", data.name);
     }
@@ -106,7 +103,7 @@ export const SubCategory = () => {
         alt="Sub Category"
         addRoute="/addSubCategory"
       />
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={subCategory} />
     </div>
   );
 };
