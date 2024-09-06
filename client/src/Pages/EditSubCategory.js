@@ -30,7 +30,7 @@ export const EditSubCategory = () => {
         status: subCategoryStatus,
       };
 
-      console.log(formData);
+      // console.log(formData);
       const response = await axiosInstance.put(
         "/subcategory/" + data.id,
         formData
@@ -89,7 +89,7 @@ export const EditSubCategory = () => {
                 label="Status"
                 id="edit_category_Status"
                 value={subCategoryStatus}
-                onChange={(e) => setSubCategoryStatus(e.target.value)}
+                onChange={(e) => setSubCategoryStatus(Number(e.target.value))}
               />
             </div>
             {/* <div className="form-container">

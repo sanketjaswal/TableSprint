@@ -16,11 +16,13 @@ export const DropdownField = ({ label, id, value, onChange }) => {
       id: item.id,
       name: item.name,
     }));
+    console.log("dropArr: ", dropArr);
   } else if (label === "SubCategory" || label === "Sub Category") {
     dropArr = subCategory.map((item) => ({
       id: item.id,
       name: item.name,
     }));
+    console.log("dropArr: ", dropArr);
   }
 
   return (
@@ -34,6 +36,7 @@ export const DropdownField = ({ label, id, value, onChange }) => {
         value={value ?? ""}
         onChange={onChange}
       >
+        <option style={{ display: "none" }}></option>
         {dropArr.map((dropOption) => (
           <option key={dropOption.id} value={dropOption.id}>
             {dropOption.name}

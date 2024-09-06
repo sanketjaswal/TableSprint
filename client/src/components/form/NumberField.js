@@ -27,7 +27,7 @@ export const NumberField = ({ label, id, value, onChange }) => {
           id={id}
           value={value}
           onChange={onChange}
-          min="1"
+          min="0"
           max="100"
         />
       </div>
