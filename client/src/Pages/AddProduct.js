@@ -34,7 +34,7 @@ export const AddProduct = () => {
       if (!response) {
         throw new Error("Failed to add product");
       }
-      navigate("/category");
+      navigate("/products");
     } catch (error) {
       console.error("Error adding product:", error);
     }

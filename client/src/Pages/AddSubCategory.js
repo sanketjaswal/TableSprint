@@ -32,7 +32,7 @@ export const AddSubCategory = () => {
       if (!response) {
         throw new Error("Failed to add sub category");
       }
-      // navigate("/category");
+      navigate("/subcategory");
     } catch (error) {
       console.error("Error adding category:", error);
     }

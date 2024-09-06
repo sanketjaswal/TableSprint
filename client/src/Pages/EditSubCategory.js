@@ -6,12 +6,14 @@ import { ImageField } from "../components/form/ImageField";
 import { SaveButton } from "../components/form/SaveButton";
 import { CancelButton } from "../components/form/CancelButton";
 import { DropdownField } from "components/form/DropdownField";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axiosInstance from "utils/axios";
 
 export const EditSubCategory = () => {
   const location = useLocation();
   const { data } = location.state || {};
+
+  let navigate = useNavigate();
 
   const [subCategoryName, setSubCategoryName] = useState(data.name);
   const [subCategorySequence, setSubCategorySequence] = useState(data.sequence);
@@ -39,7 +41,7 @@ export const EditSubCategory = () => {
       if (!response) {
         throw new Error("Failed to add sub category");
       }
-      // navigate("/category");
+      navigate("/subcategory");
     } catch (error) {
       console.error("Error adding category:", error);
     }

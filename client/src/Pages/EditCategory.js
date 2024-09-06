@@ -5,13 +5,15 @@ import { NumberField } from "../components/form/NumberField";
 import { ImageField } from "../components/form/ImageField";
 import { SaveButton } from "../components/form/SaveButton";
 import { CancelButton } from "../components/form/CancelButton";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { DropdownField } from "components/form/DropdownField";
 import axiosInstance from "utils/axios";
 
 export const EditCategory = () => {
   const location = useLocation();
   const { data } = location.state || {};
+
+  let navigate = useNavigate();
 
   const [categoryName, setCategoryName] = useState(data.name);
   const [categorySequence, setCategorySequence] = useState(data.sequence);
@@ -40,6 +42,7 @@ export const EditCategory = () => {
       if (!response) {
         throw new Error("Failed to add category");
       }
+      navigate("/category");
     } catch (error) {
       console.error("Error adding category:", error);
     }

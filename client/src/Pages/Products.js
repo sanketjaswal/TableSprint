@@ -25,10 +25,10 @@ export const Products = () => {
     fetchData();
   }, [edits]);
 
-  const deleteProduct = (data) => {
+  const deleteProduct = async (data) => {
     console.log(data);
     try {
-      axiosInstance.delete("/product/" + data.id);
+      await axiosInstance.delete("/product/" + data.id);
       console.log("Data Deleted Successfully");
       let num = edits;
       num++;
