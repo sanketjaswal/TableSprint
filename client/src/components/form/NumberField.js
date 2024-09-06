@@ -2,11 +2,9 @@ import React from "react";
 
 export const NumberField = ({ label, id, value, onChange }) => {
   const changeValue = (amount) => {
-    const input = document.getElementById(id);
-    console.log(input);
-    let value = parseInt(input.value, 10) || 1;
-    value += amount;
-    input.value = Math.max(1, Math.min(100, value));
+    let newValue = parseInt(value, 10) || 1;
+    newValue = Math.max(1, Math.min(100, newValue + amount));
+    onChange({ target: { value: newValue } });
   };
 
   const decreaseValue = () => {
@@ -34,10 +32,10 @@ export const NumberField = ({ label, id, value, onChange }) => {
         />
       </div>
       <div className="number-btns-holder">
-        <button className="decrease-btn" type="button" onClick={decreaseValue}>
+        <button className="decrease-btn" type="button" onClick={increaseValue}>
           ˄
         </button>
-        <button className="increase-btn" type="button" onClick={increaseValue}>
+        <button className="increase-btn" type="button" onClick={decreaseValue}>
           ˅
         </button>
       </div>

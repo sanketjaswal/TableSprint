@@ -14,6 +14,8 @@ export const EditProduct = () => {
 
   const [productName, setProductName] = useState(data.name);
   const [productSequence, setProductSequence] = useState(data.sequence);
+
+  const [productStatus, setProductStatus] = useState(data.status);
   return (
     <div className="add-item-page">
       <Link to="/products">
@@ -44,7 +46,12 @@ export const EditProduct = () => {
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
               />
-              <DropdownField label="Status" id="editProductStatus" />
+              <DropdownField
+                label="Status"
+                id="editProductStatus"
+                value={productStatus}
+                onChange={(e) => setProductStatus(e.target.value)}
+              />
             </div>
             <div className="form-container">
               <ImageField label="Upload Image" id="editProductImage" />

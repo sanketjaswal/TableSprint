@@ -16,23 +16,23 @@ export const EditCategory = () => {
   const [categoryName, setCategoryName] = useState(data.name);
   const [categorySequence, setCategorySequence] = useState(data.sequence);
 
-  const [categoryStatus, setCategoryStatus] = useState(data.sequence);
+  const [categoryStatus, setCategoryStatus] = useState(data.status);
 
-  // console.log(data);
+  console.log(data);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const formData = new FormData();
-      formData.append("name", categoryName);
-      formData.append("sequence", categorySequence);
-      formData.append("status", categoryStatus);
-
-      // formData.append("image", categoryImage);
+      let formData = {
+        name: categoryName,
+        sequence: categorySequence,
+        status: categoryStatus,
+        //  image: categoryImage
+      };
 
       console.log(formData);
-      const response = await axiosInstance.post(
+      const response = await axiosInstance.put(
         "/category/" + data.id,
         formData
       );
@@ -88,7 +88,7 @@ export const EditCategory = () => {
                 value={categoryStatus}
                 onChange={(e) => setCategoryStatus(e.target.value)}
               />
-              <ImageField label="Upload Image" id="edit_category_image" />
+              {/* <ImageField label="Upload Image" id="edit_category_image" /> */}
             </div>
           </div>
 

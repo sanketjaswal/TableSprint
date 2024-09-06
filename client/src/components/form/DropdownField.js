@@ -7,15 +7,21 @@ export const DropdownField = ({ label, id, value, onchange }) => {
   let dropArr = [];
 
   if (label === "Status" || label === "status") {
-    dropArr = ["Active", "Inactive"];
+    dropArr = [
+      { id: 1, name: "Active" },
+      { id: 0, name: "Inactive" },
+    ];
   } else if (label === "Category" || label === "Category Name") {
-    for (let item in categoryg) {
-      dropArr.push(categoryg[item].name);
-    }
+    // dropArr.push(categoryg[item].name);
+    dropArr = categoryg.map((item) => ({
+      id: item.id,
+      name: item.name,
+    }));
   } else if (label === "SubCategory" || label === "Sub Category") {
-    for (let item in categoryg) {
-      dropArr.push(subCategory[item].name);
-    }
+    dropArr = subCategory.map((item) => ({
+      id: item.id,
+      name: item.name,
+    }));
   }
   return (
     <div className="dropdown-container">
@@ -28,10 +34,10 @@ export const DropdownField = ({ label, id, value, onchange }) => {
         value={value}
         onChange={onchange}
       >
-        {dropArr.map((dropOption, index) => {
+        {dropArr.map((dropOption) => {
           return (
-            <option key={index} value={dropOption}>
-              {dropOption}
+            <option key={dropOption.id} value={dropOption.id}>
+              {dropOption.name}
             </option>
           );
         })}

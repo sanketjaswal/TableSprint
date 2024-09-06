@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "css/Form.css";
 import { TextField } from "../components/form/TextField";
 import { NumberField } from "../components/form/NumberField";
@@ -9,6 +9,7 @@ import { DropdownField } from "components/form/DropdownField";
 import { Link } from "react-router-dom";
 
 export const AddSubCategory = () => {
+  const [categoryName, setCategoryName] = useState("");
   return (
     <div className="add-item-page">
       <Link to="/subcategory">
@@ -27,7 +28,12 @@ export const AddSubCategory = () => {
         <form className="form">
           <div className="form-seperater">
             <div className="form-container">
-              <DropdownField label="Category Name" id="add_subcat_category" />
+              <DropdownField
+                label="Category Name"
+                id="add_subcat_category"
+                value={categoryName}
+                onChange={(e) => setCategoryName(e.target.value)}
+              />
               <TextField label="Sub Category Name" id="subcategory" />
             </div>
 

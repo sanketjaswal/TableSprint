@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "css/Form.css";
 import { TextField } from "../components/form/TextField";
 import { NumberField } from "../components/form/NumberField";
@@ -9,6 +9,16 @@ import { DropdownField } from "components/form/DropdownField";
 import { Link } from "react-router-dom";
 
 export const AddProduct = () => {
+  const [categoryName, setCategoryName] = useState("");
+  const [subCategoryName, setsubCategoryName] = useState("");
+
+  // const showchange = (e) => {
+  //   console.log("drop data set : ", e.target.value);
+  //   setsubCategoryName(e.target.value);
+  // };
+
+  const handleSubmit = () => {};
+
   return (
     <div className="add-item-page">
       <Link to="/products">
@@ -24,11 +34,22 @@ export const AddProduct = () => {
       </Link>
 
       <div className="form-holder">
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit}>
           <div className="form-seperater">
             <div className="form-container">
-              <DropdownField label="Category" id="addProductCategory" />
-              <DropdownField label="Sub Category" id="addProductSubCategory" />
+              <DropdownField
+                label="Category"
+                id="addProductCategory"
+                value={categoryName}
+                onChange={(e) => setCategoryName(e.target.value)}
+              />
+              <DropdownField
+                label="Sub Category"
+                id="addProductSubCategory"
+                value={subCategoryName}
+                // onchange={(e) => showchange(e)}
+                onChange={(e) => setsubCategoryName(e.target.value)}
+              />
             </div>
 
             {/* image field */}

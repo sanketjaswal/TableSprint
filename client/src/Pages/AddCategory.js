@@ -5,23 +5,24 @@ import { NumberField } from "../components/form/NumberField";
 import { ImageField } from "../components/form/ImageField";
 import { SaveButton } from "../components/form/SaveButton";
 import { CancelButton } from "../components/form/CancelButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "utils/axios";
 
 export const AddCategory = () => {
-  // State for form inputs
   const [categoryName, setCategoryName] = useState("");
   const [categorySequence, setCategorySequence] = useState("");
   const [categoryImage, setCategoryImage] = useState("");
+
+  let navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const formData = new FormData();
-      formData.append("name", categoryName);
-      formData.append("sequence", categorySequence);
-      // formData.append("image", categoryImage);
+      let formData = {
+        name: categoryName,
+        sequence: categorySequence,
+      };
 
       console.log(formData);
       const response = await axiosInstance.post("/category", formData);
@@ -29,6 +30,7 @@ export const AddCategory = () => {
       if (!response.ok) {
         throw new Error("Failed to add category");
       }
+      navigate("/category");
     } catch (error) {
       console.error("Error adding category:", error);
     }

@@ -14,6 +14,9 @@ export const EditSubCategory = () => {
 
   const [subCategoryName, setSubCategoryName] = useState(data.name);
   const [subCategorySequence, setSubCategorySequence] = useState(data.sequence);
+  const [categoryName, setCategoryName] = useState("");
+
+  const [categoryStatus, setCategoryStatus] = useState(data.status);
 
   return (
     <div className="add-item-page">
@@ -33,7 +36,12 @@ export const EditSubCategory = () => {
         <form className="form">
           <div className="form-seperater">
             <div className="form-container">
-              <DropdownField label="Category" id="editSubcat_Category" />{" "}
+              <DropdownField
+                label="Category"
+                id="editSubcat_Category"
+                value={categoryName}
+                onChange={(e) => setCategoryName(e.target.value)}
+              />{" "}
               <TextField
                 label="Sub Category Name"
                 id="editSubcat_Name"
@@ -50,7 +58,12 @@ export const EditSubCategory = () => {
                 value={subCategorySequence}
                 onChange={(e) => setSubCategorySequence(e.target.value)}
               />
-              <DropdownField label="Status" id="edit_category_Status" />
+              <DropdownField
+                label="Status"
+                id="edit_category_Status"
+                value={categoryStatus}
+                onChange={(e) => setCategoryStatus(e.target.value)}
+              />
             </div>
             <div className="form-container">
               <ImageField label="Upload Image" id="editSubcat_image" />

@@ -10,7 +10,7 @@ import DataContext from "context/context";
 export const Category = () => {
   // const [data, setData] = useState([]);
   const { categoryg, setCategory } = useContext(DataContext);
-
+  const { count, setCount } = useState(0);
   let navigate = useNavigate();
 
   const fetchData = async () => {
@@ -24,13 +24,16 @@ export const Category = () => {
 
   useEffect(() => {
     fetchData();
-  }, [categoryg]);
+  }, [count]);
 
   const deleteCategory = (data) => {
     console.log(data);
     try {
       axiosInstance.delete("/category/" + data.id);
       console.log("Data Deleted Successfully");
+      let num = count;
+      num = num + 1;
+      setCount(num);
     } catch (error) {
       console.error("Error Deleting data:", data.name);
     }
